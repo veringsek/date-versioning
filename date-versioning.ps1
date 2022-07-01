@@ -1,4 +1,5 @@
 $target = $args[0]
+Write-Output "Making a Date Version for $args"
 $parent = Split-Path $target -Parent -Resolve
 $name = Split-Path $target -LeafBase
 $extension = Split-Path $target -Extension

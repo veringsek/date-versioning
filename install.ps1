@@ -8,7 +8,7 @@ if ($lang -eq 'zh') {
 }
 
 $main = Join-Path -Path $PSScriptRoot -ChildPath date-versioning.ps1
-$main = 'pwsh -c "' + $main + '" "%1"'
+$main = 'pwsh -c "' + $main + '" ' + "'" + '%1' + "'"
 
 New-Item -Force -Path 'HKCU:\Software\Classes\Directory\shell\date-versioning'
 New-ItemProperty -Force -LiteralPath 'HKCU:\Software\Classes\Directory\shell\date-versioning' -Name '(Default)' -Value $STRING -PropertyType 'String'
