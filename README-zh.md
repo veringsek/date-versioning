@@ -1,48 +1,48 @@
-# Date Versioning
+# 日期版本
 
 > English [中文](README-zh.md)
 
-A date-based versioning for casual files.
+基於日期設計的版本控制模式。
 
-## Spec
+## 規格
 
-Date Versioning applies to any files or directories, as long as they have a modifiable name. 
+日期版本適用於任何可以更名的檔案或資料夾。
 
-In the article below, only file will be mentioned, but the exact same logic applies to any directories. When talking about file names, extension is not included. The concat of file name and extension will be refered as full name.
+此文中僅會提到檔案，但對於資料夾，所有邏輯都是完全相同的。以下提到的檔案名稱並不包含副檔名。檔案名稱與副檔名結合起來會稱為檔案的全名。
 
-Considering a file, with its full name as `${name}${ext}` , where `${name}` is the file's name, and `${ext}` is its extension including the leading `.` character, or empty if the file doesn't have an extension.
+考慮一個檔案，全名為 `${name}${ext}` ，其中 `${name}` 是檔案名稱， `${ext}` 是包含 `.` 的副檔名，若檔案沒有副檔名，這個字串就是空的。
 
-While creating a Date Version of the said file, insert version between the file name and the extension, with space-dash-space ` - ` splitting name and version, forming:
+在建立日期版本時，將版本插入到檔案名稱與副檔名中間，並以空格減號空格 ` - ` 隔開名稱與版本:
 
 ```
 ${name} - ${version}${ext}
 ```
 
-The `${version}` consists of version code `${code}` and version description `${desc}` .
+版本 `${version}` 由版本代號 `${code}` 和版本描述 `${desc}` 組成。
 
-The version code is the concat of a date `${date}` and a serial number `${sn}` , with an underscore in between.
+版本代號是由日期 `${date}` 和一個流水號 `${sn}` 連結而成，中間會用底線連接。
 
-The date is usually when that version is created, normally it would be in format `YYYY-MM-DD` , where `YYYY` is year, `MM` is month in 2-digit, `DD` is day of month in 2-digit. 
+日期基本上就是版本建立的日期，一般來說格式為 `YYYY-MM-DD` ，其中 `YYYY` 是年， `MM` 是兩位數的月， `DD` 是兩位數的日。
 
-Let it be known that the date is not necessarily in Common Era, not even necessarily in Gregorian calendar. In my environment, we use Republic of China calendar, so I also use that for my date in Date Versioning.
+要注意的是，日期並不一定要使用公元，也不一定要使用格里曆。在我的環境中使用的是中華民國曆，因此我在日期版本中使用的也是中華民國曆。
 
-The serial number is counted from 0. It's recommended not to use zero padding on serial number, since the number is theoretically limited at infinity. But since the number is really hard to surpass 99 (if you surpass 99, it means you created at least a hundred of the versions of the same file in one day) , you can pad it to 2-digit if you really care so much.
+流水號從 0 開始數。不必補零，因為流水號理論上沒有上限。不過實際上流水號很難超過 99（若超過，表示你在一天之內對同一個檔案建立了上百個版本），因此要補成兩位數也不是不行。
 
-The version description can be empty. When not empty, it must starts with underscore `_` . You can write down anything in version description, but it's recommended to replace all spaces with underscores.
+版本描述可以是空的，若不是空的，必須以底線 `_` 起頭，其後可以隨便紀錄任何東西，不過建議將其中的空格全部換成底線。
 
-So the final full name will be like
+檔案最終的全名會像是
 
 ```
 ${name} - ${date}${sn}${desc}${ext}
 ```
 
-Only when serial number is 0 and there's no version description, `${sn}` and `{desc}` can be omitted, forming
+僅當流水號為零且沒有版本描述的時候，兩者 `${sn}` 和 `{desc}` 可以同時被省略，變成
 
 ```
 ${name} - ${date}${ext}
 ```
 
-Here's some examples:
+以下為正確的範例：
 
 |    | Original    | Date Version                             |
 |:--:|:------------|:-----------------------------------------|
