@@ -52,15 +52,15 @@ ${name} - ${date}${ext}
 | ⭕ | report.docx | report - 2022-07-01_1_final_version.docx |
 | ⭕ | report.docx | report - 2022-07-01_23_究極最終版.docx    |
 
-## Indentity
+## 識別
 
-Two Date Versions are identified as the same version if they share the same version code. They can have different version description, but the version code must be the same iff they're the same version.
+兩個日期版本若且唯若版本代號相同時應視為相同的版本。版本描述可以相異，但版本代號的部分必須完全相同。
 
-When comparing, omitted serial number 0 is still considered serial number 0, which means `report - 2022-07-01.docx` and `report - 2022-07-01_0_audit.docx` are the same Date Version. The description `audit` is only a note, it's not like "an audit version of `report - 2022-07-01_0.docx` ", it's more like the `report - 2022-07-01.docx` omitted the description, probably because the creator thought it was not worth noting. But as Date Versioning spec indicated, these two files must have identical content and be considered the same version.
+在比較版本代號時，流水號為 0 並省略流水號，以及流水號為 0 且不省略流水號，兩者是相同的。也就是說， `report - 2022-07-01.docx` 和 `report - 2022-07-01_0_已修訂.docx` 兩者是相同的日期版本。後者版本描述中的 `已修訂` 只是個提醒，不能解釋成 「 `report - 2022-07-01_0.docx` 的修訂版」，反過來，應理解成 `report - 2022-07-01.docx` 是省略版本描述的寫法，也許建立日期版本的人認為這個資訊並不重要。但根據日期版本的規格，這兩者應視為相同的日期版本，且檔案內容也應一致。
 
-If you want to create an audit version of `report - 2022-07-01_0.docx` , you should create another Date Version, for example, `report - 2022-07-01_1.docx` .
+若想要建立 `report - 2022-07-01_0.docx` 的修訂版，應建立新的日期版本，比如 `report - 2022-07-01_1.docx` 。
 
-The file without Date Version is the working one, which should be the latest one.
+不帶日期版本的檔案是正在編輯的那一份，一般來說應該要是最新版。
 
 ## Why
 
