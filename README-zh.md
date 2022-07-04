@@ -62,50 +62,68 @@ ${name} - ${date}${ext}
 
 不帶日期版本的檔案是正在編輯的那一份，一般來說應該要是最新版。
 
-## Why
+## 理由
 
-* Why use Date Versioning?
+* 為何要使用日期版本？
 
-  It's easy to tell when the version was created.
+  一眼就能看出版本建立的時間。
 
-  It's easy to create a Date Version without any tool. Just copy and change the name.
+  複製，更名。無須任何工具就能輕易建立新版本。
 
-  It's quick. No setup is required.
+  快速。無須任何事先設定。
 
-  It's scalable. You can use Date Versioning on a single file. You can use Date Versioning on a directory with a bunch of files inside. You can also use Date Versioning on a specific file in that Date Versioned directory.
+  靈活。可以針對單一檔案建立日期版本；可以針對一整個資料夾建立日期版本；甚至可以在已建立日期版本的資料夾中，針對其中一個檔案再建立日期版本。
 
-* When not to use Date Versioning?
+* 什麼時候不該使用日期版本？
 
-  When you can use Git. Git is convenient. Git allows cooperation. Git works with version difference. Git is storage efficient.
+  適用 Git 的時候。Git 既方便，又能多人協作，且版本的建立是基於檔案在版本間變化的差異，因此空間效率更高。
 
-  When you need to cooperate with others on the same file, which means more than one person can create versions of that file, you must not use Date Versioning.
+  當你需要與他人共同協作，有多個人可以對同一份檔案建立版本的情形下，不應該使用日期版本。
 
-* When to use Date Versioning?
+* 什麼時候該使用日期版本？
 
-  When setting-up Git is too complex. Like an Excel `.xlsx` file with students' exam scores. Setting-up Git for this only file is too many work, and not that useful like text files.
+  當設定 Git 太麻煩的時候。比如一個儲存學生成績的 Excel `.xlsx` 檔。單單為了這一個檔案設定 Git 太大題小作，而且這種非文字格式的檔案在 Git 中也無法發揮優勢。
 
-  When you want to quickly create a version, you can choose Date Versioning over Git.
+  當你需要快速地、臨時地建立版本的時候，使用日期版本會比 Git 更好。
 
-* Why use space-dash-space ` - ` between name and version?
+* 為何要用空格減號空格 ` - ` 來隔開檔案名稱和版本？
 
-  Because that is how Explorer name a clone file automatically under Windows. A clone to file `name.ext` will be named `name - Copy.ext` . The earliest Date Versioning is to copy a file, and replace the `Copy` part with a date. With Chinese as the system language, only 2 characters need to be replace because the clone will be named `name - 複製.ext` by Explorer.
+  這來自於檔案總管在 Windows 中複製檔案時預設的名稱。複製出來的檔案會根據原本的檔案全名 `name.ext` 自動命名成 `name - Copy.ext` 。最早期的日期版本就是複製檔案後，把 `Copy` 字眼改成版本代號。在中文環境下複製出來的檔案會被自動命名為 `name - 複製.ext` ，比起英文環境的 4 個字元，中文環境下只要刪除 2 個字元，好 lucky ～
 
-  Furthermore, the spaces aside the dash clearly split the `${name}` and `${version}` apart, making it easier to distinguish visually.
+  另外，前後的空格可以讓 `${name}` 和 `${version}` 在視覺上更容易區分。
 
-* Why use underscore `_` between date and serial number in version code?
+* 為何要用底線 `_` 來隔開版本日期和流水號？
 
-  With underscore and without spaces, the date and serial number is linked, making them looks like one thing.
+  僅用底線而不用空格可以讓版本日期和流水號看起來為一個整體。
 
-  The reason not to use dash is to distinquish serial number from the day of month in date, because dash is used between month and day.
+  不使用減號的原因是為了和版本日期中的減號作區別。
 
-* Why copy?
+* 為何要複製？
 
-  Because it, in most cases, allows you to create a Date Version while working with that file.
+  因為大部分的情況下，這樣可以在繼續編輯檔案的前提下建立一個日期版本。
 
-## Automation
+## 自動化
 
-## License
+利用 [ `date-versioning.ps1` ](date-versioning.ps1) 可以快速建立新的日期版本：
+
+```powershell
+PS C:\> "date-versioning.ps1" "$file"
+```
+
+其中 `$file` 是要建立日期版本的檔案。
+
+這個腳本會自動偵測與 `$file` 同一目錄下（不包含子目錄）的檔案中，是否存在日期版本，並自動計算流水號。
+
+在 Windows 上可以利用 [ `install.ps1` ](install.ps1) 來安裝腳本，之後，可以在檔案總管的右鍵選單中使用 `建立日期版本` 。安裝時，可以指定語言，預設為英文，中文請用
+
+```powershell
+PS C:\> "install.ps1" -lang zh
+```
+
+利用 [ `uninstall.ps1` ](uninstall.ps1) 解除安裝。
+
+## 授權
 
 [MIT](http://opensource.org/licenses/MIT)
 
-Copyright © 2022, veringsek
+版權所有 © 民國 111 年，veringsek

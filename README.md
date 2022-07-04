@@ -104,6 +104,24 @@ The file without Date Version is the working one, which should be the latest one
 
 ## Automation
 
+Run [ `date-versioning.ps1` ](date-versioning.ps1) to quickly create Date Version:
+
+```powershell
+PS C:\> "date-versioning.ps1" "$file"
+```
+
+where `$file` is the file to create Date Version.
+
+The script detects existing Date Version in the same directory to `$file` , and determine serial number automatically.
+
+Use [ `install.ps1` ](install.ps1) on Windows to install the script as a context menu item `Make a Date Version` in Explorer. You can specify language when installing, with default as English.
+
+```powershell
+PS C:\> "install.ps1" -lang zh
+```
+
+Uninstall with [ `uninstall.ps1` ](uninstall.ps1).
+
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)
